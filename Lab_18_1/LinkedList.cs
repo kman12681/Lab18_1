@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_18_1
 {
-    class LinkedList
+    public class LinkedList
     {
         private Node head;
         private Node current;
@@ -16,39 +16,35 @@ namespace Lab_18_1
         {
             head = null;
             current = null;
+            Count = 0;
         }
 
         public void RemoveAll(object o)
-        {
-            // this method removes node with first occurrence of object
-            // TODO: method needs to removes ALL nodes with occurrences of object
-            Node thisNode = head;
-            Node prevNode = null;
+        {            
+            Node thisNode = head;           
 
             if (thisNode != null && thisNode.Value == o)
             {
                 head = thisNode.Next;
-                return;
+                Count--;
             }
-            else
+
+            while (thisNode != null)
             {
-                while (thisNode != null)
+                if (thisNode.Next != null && thisNode.Next.Value == o)
                 {
-                    if (thisNode.Value == o)
-                    {
-                        prevNode = thisNode;
-                    }
-                    else if (thisNode.Value != o)
-                    {
-                        thisNode = thisNode.Next;
-                    }
-                    else if (thisNode == null)
-                    {
-                        return;
-                    }
+                    thisNode.Next = thisNode.Next.Next;
+                    Count--;
+                }
+                else if (thisNode.Next != null && thisNode.Next.Value != o)
+                {
+                    thisNode = thisNode.Next;
+                }
+                else
+                {
+                    thisNode = thisNode.Next;
                 }
             }
-            prevNode.Next = thisNode.Next;
         }
 
         public void AddAtStart(object data)
@@ -130,6 +126,7 @@ namespace Lab_18_1
                 thisNode = thisNode.Next;
             }
         }
+
 
     }
 }

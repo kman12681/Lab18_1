@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_18_1
 {
-    class Node
+    public class Node
     {
         public Node Next;
         public object Value;
